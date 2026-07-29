@@ -1,0 +1,46 @@
+---
+import type { TimelineEntry } from "../utils/timeline";
+import { formatDateRange } from "../utils/timeline";
+
+interface Props {
+  entries: TimelineEntry[];
+  compact?: boolean;
+}
+
+const { entries, compact = false } = Astro.props;
+---
+
+<ol class:list={["timeline", { "timeline--compact": compact }]}>
+  {entries.map((entry) => (
+    <li class:list={["timeline-entry", `timeline-entry--${entry.data.type}`]}>
+      <div class="timeline-marker" aria-hidden="true"></div>
+      <div class="timeline-date">
+        {formatDateRange(entry.data.startDate, entry.data.endDate)}
+      </div>
+      <article>
+        <div class="entry-meta">
+          <span class="entry-type">{entry.data.type}</span>
+          {entry.data.location && <span>{entry.data.location}</span>}
+        </div>
+        <h3>{entry.data.title}</h3>
+        <p class="entry-org">{entry.data.organization}</p>
+        <p>{entry.data.summary}</p>
+        {entry.data.tags.length > 0 && (
+          <ul class="tag-list" aria-label="Topics">
+            {entry.data.tags.map((tag) => <li>{tag}</li>)}
+          </ul>
+        )}
+        {entry.data.links && (
+          <div class="entry-links">
+            {entry.data.links.map((link) => (
+              <a href={link.href} target="_blank" rel="noreferrer">
+                {link.label} <span aria-hidden="true">↗</span>
+                <span class="sr-only"> (opens in a new tab)</span>
+              </a>
+            ))}
+          </div>
+        )}
+      </article>
+    </li>
+  ))}
+</ol>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import { siteConfig } from "../config/site";
+---
+
+<BaseLayout
+  title={`Contact — ${siteConfig.name}`}
+  description="Get in touch about work, ideas, or a thoughtful collaboration."
+>
+  <PageIntro
+    eyebrow="Personal website"
+    title="Contact"
+    intro={`${siteConfig.availability} If my work speaks to you, feel free to contact me using any of the methods below.`}
+  />
+  <section class="contact-details shell">
+    <div>
+      <p class="eyebrow">Email</p>
+      <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+    </div>
+    <div>
+      <p class="eyebrow">Elsewhere</p>
+      <ul class="social-list">
+        {siteConfig.socials.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noreferrer">
+              {link.label}<span aria-hidden="true">↗</span>
+              <span class="sr-only"> (opens in a new tab)</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div>
+      <p class="eyebrow">Based in</p>
+      <p>{siteConfig.location}</p>
+    </div>
+  </section>
+</BaseLayout>

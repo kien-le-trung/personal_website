@@ -1,0 +1,26 @@
+---
+export interface StrandItem {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  items: [StrandItem, StrandItem, StrandItem];
+  label: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+<nav class="strand-panel" aria-label={label}>
+  {items.map((item) => (
+    <a class="strand-card" href={`#${item.id}`}>
+      <span>
+        <strong>{item.title}</strong>
+        <small>{item.description}</small>
+      </span>
+      <span class="strand-arrow" aria-hidden="true">↓</span>
+    </a>
+  ))}
+</nav>

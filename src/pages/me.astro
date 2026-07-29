@@ -1,0 +1,96 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import StrandPanel, { type StrandItem } from "../components/StrandPanel.astro";
+import { siteConfig } from "../config/site";
+
+const strands: [StrandItem, StrandItem, StrandItem] = [
+  {
+    id: "brewing",
+    title: "Brewing",
+    description: "Coffee, methods, and good cups",
+  },
+  {
+    id: "jamming",
+    title: "Jamming",
+    description: "Guitar and music",
+  },
+  {
+    id: "lifting",
+    title: "Lifting",
+    description: "Training and getting stronger",
+  },
+];
+---
+
+<BaseLayout
+  title={`Me — ${siteConfig.name}`}
+  description="A little more about my background, interests, and life beyond work."
+>
+  <PageIntro
+    eyebrow="Personal website"
+    title="Me"
+    intro="A little about my background, my academic interests, and what I like to do when I am away from work."
+  />
+  <section class="me-layout shell">
+    <div class="portrait-placeholder" role="img" aria-label="Portrait placeholder">
+      <span>{siteConfig.shortName}</span>
+      <p>Your portrait<br />could live here.</p>
+    </div>
+    <div class="prose">
+      <p class="prose-lead">
+        Replace this with a simple introduction to who you are and how you got here.
+      </p>
+      <p>
+        You might mention where you grew up, what you study or do for work, and a few experiences that shaped your interests.
+      </p>
+      <p>
+        This is also a good place for the ordinary details that matter to you—perhaps coffee, a favorite place, or how you spend a quiet weekend.
+      </p>
+    </div>
+  </section>
+  <section class="strand-panel-section shell me-strand-panel">
+    <StrandPanel items={strands} label="Personal interests" />
+  </section>
+  <div class="hobby-sections">
+    <section id="brewing" class="hobby-detail" aria-labelledby="brewing-heading">
+      <div class="shell hobby-layout">
+        <header>
+          <h2 id="brewing-heading">Brewing</h2>
+          <p>Coffee is one of the hobbies I spend the most time learning about.</p>
+        </header>
+        <dl class="hobby-notes">
+          <div><dt>Preferred methods</dt><dd>Add the brewers and recipes you use most often.</dd></div>
+          <div><dt>What interests me</dt><dd>Add a few details, such as origins, processing, roasting, or dialing in espresso.</dd></div>
+          <div><dt>Recently</dt><dd>Add a memorable coffee, café visit, or experiment.</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section id="jamming" class="hobby-detail" aria-labelledby="jamming-heading">
+      <div class="shell hobby-layout">
+        <header>
+          <h2 id="jamming-heading">Jamming</h2>
+          <p>Guitar gives me a different way to slow down and pay attention.</p>
+        </header>
+        <dl class="hobby-notes">
+          <div><dt>Instrument</dt><dd>Add the guitar or other instruments you play.</dd></div>
+          <div><dt>Influences</dt><dd>Add a few genres, artists, or songs you return to.</dd></div>
+          <div><dt>Currently practicing</dt><dd>Add a technique, song, or musical goal.</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section id="lifting" class="hobby-detail" aria-labelledby="lifting-heading">
+      <div class="shell hobby-layout">
+        <header>
+          <h2 id="lifting-heading">Lifting</h2>
+          <p>Training is a reliable part of my week and a simple way to measure progress.</p>
+        </header>
+        <dl class="hobby-notes">
+          <div><dt>Approach</dt><dd>Add how you structure training or what you value in it.</dd></div>
+          <div><dt>Favorite movements</dt><dd>Add the lifts or exercises you enjoy most.</dd></div>
+          <div><dt>Current focus</dt><dd>Add a goal, program, or area you are working on.</dd></div>
+        </dl>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

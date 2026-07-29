@@ -1,0 +1,112 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageIntro from "../components/PageIntro.astro";
+import StrandPanel, { type StrandItem } from "../components/StrandPanel.astro";
+import Timeline from "../components/Timeline.astro";
+import { siteConfig } from "../config/site";
+import { sortTimeline, formatDateRange } from "../utils/timeline";
+
+const entries = sortTimeline(await getCollection("timeline"));
+const professional = entries.filter((entry) => entry.data.type === "work");
+const research = entries.filter((entry) => entry.data.type === "research");
+const projects = entries.filter((entry) => entry.data.type === "project");
+const education = entries.filter((entry) => entry.data.type === "education");
+const workEntries = [...professional, ...research, ...projects];
+const strands: [StrandItem, StrandItem, StrandItem] = [
+  {
+    id: "professional",
+    title: "Professional",
+    description: "Internships and jobs",
+  },
+  {
+    id: "research",
+    title: "Research",
+    description: "Research-oriented work",
+  },
+  {
+    id: "projects",
+    title: "Projects",
+    description: "Hackathons and personal projects",
+  },
+];
+const baseURL = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const resumeHref = `${baseURL}${siteConfig.resume.href.replace(/^\//, "")}`;
+---
+
+<BaseLayout
+  title={`Work — ${siteConfig.name}`}
+  description="A chronological record of work, projects, research, and education."
+>
+  <PageIntro
+    eyebrow="Personal website"
+    title="Work"
+    intro="Here is a chronological overview of my work, projects, research, and education."
+  />
+  <section class="section shell section--tight" aria-label="Timeline controls">
+    <div class="work-toolbar">
+      <p>{workEntries.length} work entries</p>
+      {siteConfig.resume.available ? (
+        <a class="button button--primary" href={resumeHref} download>Download résumé ↓</a>
+      ) : (
+        <span class="button button--disabled" aria-disabled="true" title="Add public/resume.pdf and enable it in site configuration">
+          Résumé coming soon
+        </span>
+      )}
+    </div>
+  </section>
+  <section class="strand-panel-section shell">
+    <StrandPanel items={strands} label="Work strands" />
+  </section>
+  <div class="strand-sections">
+    <section id="professional" class="strand-detail shell" aria-labelledby="professional-heading">
+      <header class="strand-heading">
+        <h2 id="professional-heading">Professional</h2>
+        <p>Internships and jobs, listed from most recent to oldest.</p>
+      </header>
+      {professional.length > 0 ? (
+        <Timeline entries={professional} />
+      ) : (
+        <p class="empty-strand">Professional experience will be added here.</p>
+      )}
+    </section>
+    <section id="research" class="strand-detail shell" aria-labelledby="research-heading">
+      <header class="strand-heading">
+        <h2 id="research-heading">Research</h2>
+        <p>Research projects and other work centered on answering a question.</p>
+      </header>
+      {research.length > 0 ? (
+        <Timeline entries={research} />
+      ) : (
+        <p class="empty-strand">Research work will be added here.</p>
+      )}
+    </section>
+    <section id="projects" class="strand-detail shell" aria-labelledby="projects-heading">
+      <header class="strand-heading">
+        <h2 id="projects-heading">Projects</h2>
+        <p>Things built at hackathons or independently.</p>
+      </header>
+      {projects.length > 0 ? (
+        <Timeline entries={projects} />
+      ) : (
+        <p class="empty-strand">Projects will be added here.</p>
+      )}
+    </section>
+  </div>
+  {education.length > 0 && (
+    <section class="education-summary shell" aria-labelledby="education-heading">
+      <h2 id="education-heading">Education</h2>
+      <div class="education-grid">
+        {education.map((entry) => (
+          <article>
+            <p>{formatDateRange(entry.data.startDate, entry.data.endDate)}</p>
+            <h3>{entry.data.title}</h3>
+            <p>{entry.data.organization}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>
