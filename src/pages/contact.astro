@@ -16,7 +16,16 @@ import { siteConfig } from "../config/site";
   <section class="contact-details shell">
     <div>
       <p class="eyebrow">Email</p>
-      <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+      <ul class="contact-email-list">
+        <li>
+          <a class="contact-email" href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </li>
+        <li>
+          <a class="contact-email" href={`mailto:${siteConfig.secondaryEmail}`}>
+            {siteConfig.secondaryEmail}
+          </a>
+        </li>
+      </ul>
     </div>
     <div>
       <p class="eyebrow">Elsewhere</p>

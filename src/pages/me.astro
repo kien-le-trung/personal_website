@@ -1,7 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
 import { siteConfig } from "../config/site";
+import coffee1 from "../assets/coffee_1.jpg";
+import coffee2 from "../assets/coffee_2.jpg";
+import coffee3 from "../assets/coffee_3.jpg";
+import hanoiPhoto from "../assets/hanoi_photo.jpg";
+import singaporePhoto from "../assets/singapore_photo.jpg";
 ---
 
 <BaseLayout
@@ -18,13 +24,14 @@ import { siteConfig } from "../config/site";
       <h2>Where I’m from</h2>
       <div class="origin-grid">
         <article>
-          <div
-            class="origin-photo-placeholder"
-            role="img"
-            aria-label="Hanoi photo placeholder"
-          >
-            <span>Hanoi photo</span>
-          </div>
+          <Image
+            class="origin-photo"
+            src={hanoiPhoto}
+            alt="A view of Hanoi, Vietnam"
+            widths={[640, 1000]}
+            sizes="(max-width: 800px) 100vw, 45vw"
+            loading="lazy"
+          />
           <h3>Hanoi, Vietnam</h3>
           <p>
             Home sweet home! I spent the first 15 years of my life in this
@@ -34,13 +41,14 @@ import { siteConfig } from "../config/site";
           </p>
         </article>
         <article>
-          <div
-            class="origin-photo-placeholder"
-            role="img"
-            aria-label="Singapore photo placeholder"
-          >
-            <span>Singapore photo</span>
-          </div>
+          <Image
+            class="origin-photo"
+            src={singaporePhoto}
+            alt="A view of Singapore"
+            widths={[640, 1000]}
+            sizes="(max-width: 800px) 100vw, 45vw"
+            loading="lazy"
+          />
           <h3>Singapore</h3>
           <p>
             Second home from home! I’m grateful to have lived in this exciting
@@ -66,15 +74,30 @@ import { siteConfig } from "../config/site";
           <div><dt>Fun fact</dt><dd>It took me 32 espresso shots to get my first latte art.</dd></div>
         </dl>
         <div class="hobby-gallery" aria-label="Brewing photo gallery">
-          <div class="hobby-photo-placeholder hobby-photo-placeholder--feature" role="img" aria-label="Featured brewing photo placeholder">
-            <span>Brewing photo 01</span>
-          </div>
-          <div class="hobby-photo-placeholder" role="img" aria-label="Brewing photo placeholder">
-            <span>Brewing photo 02</span>
-          </div>
-          <div class="hobby-photo-placeholder" role="img" aria-label="Brewing photo placeholder">
-            <span>Brewing photo 03</span>
-          </div>
+          <Image
+            class="hobby-photo hobby-photo--coffee-1"
+            src={coffee1}
+            alt="Pour-over coffee brewing setup"
+            widths={[420, 720]}
+            sizes="(max-width: 800px) 78vw, 30vw"
+            loading="lazy"
+          />
+          <Image
+            class="hobby-photo"
+            src={coffee2}
+            alt="A coffee moment from my brewing hobby"
+            widths={[420, 720]}
+            sizes="(max-width: 800px) 78vw, 30vw"
+            loading="lazy"
+          />
+          <Image
+            class="hobby-photo"
+            src={coffee3}
+            alt="Coffee prepared during a brewing session"
+            widths={[420, 720]}
+            sizes="(max-width: 800px) 78vw, 30vw"
+            loading="lazy"
+          />
         </div>
       </div>
     </section>
@@ -89,17 +112,6 @@ import { siteConfig } from "../config/site";
           <div><dt>Influences</dt><dd>Vietnamese indie (shout out to Keo Con!) and, recently, blues-pop artists like Eric Clapton.</dd></div>
           <div><dt>Currently practicing</dt><dd>Blues scale</dd></div>
         </dl>
-        <div class="hobby-gallery" aria-label="Jamming photo gallery">
-          <div class="hobby-photo-placeholder hobby-photo-placeholder--feature" role="img" aria-label="Featured jamming photo placeholder">
-            <span>Jamming photo 01</span>
-          </div>
-          <div class="hobby-photo-placeholder" role="img" aria-label="Jamming photo placeholder">
-            <span>Jamming photo 02</span>
-          </div>
-          <div class="hobby-photo-placeholder" role="img" aria-label="Jamming photo placeholder">
-            <span>Jamming photo 03</span>
-          </div>
-        </div>
       </div>
     </section>
     <section id="lifting" class="hobby-detail" aria-labelledby="lifting-heading">

@@ -455,21 +455,14 @@ nav a[aria-current="page"]::after { transform: scaleX(1); }
   padding-top: 24px;
   border-top: 1px solid var(--line);
 }
-.origin-photo-placeholder {
+.origin-photo {
   aspect-ratio: 4 / 3;
-  display: grid;
+  display: block;
+  width: 100%;
+  height: clamp(220px, 28vw, 360px);
   margin-bottom: 24px;
-  place-items: center;
   border: 1px solid var(--line);
-  background: repeating-linear-gradient(
-    135deg,
-    transparent 0 16px,
-    var(--paper-deep) 16px 17px
-  );
-  color: var(--muted);
-  font-size: .78rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  object-fit: cover;
 }
 .origin-grid h3 {
   margin-bottom: 18px;
@@ -506,33 +499,19 @@ nav a[aria-current="page"]::after { transform: scaleX(1); }
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: clamp(190px, 22vw, 310px);
   gap: 16px;
   margin-top: 0;
 }
-.hobby-photo-placeholder {
+.hobby-photo {
   aspect-ratio: 4 / 3;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
+  display: block;
+  width: 100%;
+  height: 100%;
   border: 1px solid var(--line);
-  background: repeating-linear-gradient(
-    135deg,
-    transparent 0 16px,
-    var(--paper-deep) 16px 17px
-  );
-  color: var(--muted);
-  font-size: .78rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  object-fit: cover;
 }
-.hobby-detail:nth-child(even) .hobby-photo-placeholder {
-  background: repeating-linear-gradient(
-    135deg,
-    transparent 0 16px,
-    var(--paper) 16px 17px
-  );
-}
-.hobby-photo-placeholder--feature { min-height: 0; }
+.hobby-photo--coffee-1 { object-position: center 68%; }
 .interests-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
 .interests-grid h2 { font-size: clamp(2.4rem, 4vw, 4rem); }
 .interest-list { margin: 45px 0 0; padding: 0; list-style: none; }
@@ -546,6 +525,12 @@ nav a[aria-current="page"]::after { transform: scaleX(1); }
   border-top: 1px solid var(--line);
 }
 .contact-email { font-size: 1.05rem; font-weight: 600; }
+.contact-email-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.contact-email-list li + li { margin-top: 8px; }
 .social-list { flex-direction: column; }
 .social-list a { display: flex; justify-content: space-between; padding-block: 8px; }
 .error-page { min-height: 75vh; padding-block: 130px; }
@@ -617,7 +602,7 @@ nav a[aria-current="page"]::after { transform: scaleX(1); }
     padding-bottom: 10px;
     scroll-snap-type: x proximity;
   }
-  .hobby-photo-placeholder { scroll-snap-align: start; }
+  .hobby-photo { scroll-snap-align: start; }
   .education-grid, .contact-details { grid-template-columns: 1fr; }
   .me-layout { padding-block: 70px 100px; }
   .interests-grid { gap: 70px; }

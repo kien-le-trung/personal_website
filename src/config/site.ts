@@ -20,6 +20,7 @@ export const siteConfig = {
   description:
     "My personal website, where I share what I am working on and a little about myself.",
   email: "kientrle@unc.edu",
+  secondaryEmail: "kien.le@duke.edu",
   location: "Chapel Hill & Durham, NC",
   intro:
     "Thanks for dropping by! Welcome to this small Internet corner where I keep track my work, interests and hobbies.",
