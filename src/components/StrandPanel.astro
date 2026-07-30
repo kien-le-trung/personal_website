@@ -2,7 +2,7 @@
 export interface StrandItem {
   id: string;
   title: string;
-  description: string;
+  description?: string;
 }
 
 interface Props {
@@ -18,7 +18,7 @@ const { items, label } = Astro.props;
     <a class="strand-card" href={`#${item.id}`}>
       <span>
         <strong>{item.title}</strong>
-        <small>{item.description}</small>
+        {item.description && <small>{item.description}</small>}
       </span>
       <span class="strand-arrow" aria-hidden="true">↓</span>
     </a>

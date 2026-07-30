@@ -1,57 +1,58 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageIntro from "../components/PageIntro.astro";
-import StrandPanel, { type StrandItem } from "../components/StrandPanel.astro";
 import { siteConfig } from "../config/site";
-
-const strands: [StrandItem, StrandItem, StrandItem] = [
-  {
-    id: "brewing",
-    title: "Brewing",
-    description: "Coffee, methods, and good cups",
-  },
-  {
-    id: "jamming",
-    title: "Jamming",
-    description: "Guitar and music",
-  },
-  {
-    id: "lifting",
-    title: "Lifting",
-    description: "Training and getting stronger",
-  },
-];
 ---
 
 <BaseLayout
   title={`Me — ${siteConfig.name}`}
-  description="A little more about my background, interests, and life beyond work."
+  description="Thanks for your interest in knowing me beyond my work :D Here I document all my hobbies outside research and technical projects. Let me know if we have something in common!"
 >
   <PageIntro
     eyebrow="Personal website"
     title="Me"
-    intro="A little about my background, my academic interests, and what I like to do when I am away from work."
+    intro="Thanks for your interest in knowing me beyond my work :D On this page I document all my hobbies outside research and technical projects. Let me know if we have something in common!"
   />
   <section class="me-layout shell">
-    <div class="portrait-placeholder" role="img" aria-label="Portrait placeholder">
-      <span>{siteConfig.shortName}</span>
-      <p>Your portrait<br />could live here.</p>
-    </div>
     <div class="prose">
-      <p class="prose-lead">
-        Replace this with a simple introduction to who you are and how you got here.
-      </p>
-      <p>
-        You might mention where you grew up, what you study or do for work, and a few experiences that shaped your interests.
-      </p>
-      <p>
-        This is also a good place for the ordinary details that matter to you—perhaps coffee, a favorite place, or how you spend a quiet weekend.
-      </p>
+      <h2>Where I’m from</h2>
+      <div class="origin-grid">
+        <article>
+          <div
+            class="origin-photo-placeholder"
+            role="img"
+            aria-label="Hanoi photo placeholder"
+          >
+            <span>Hanoi photo</span>
+          </div>
+          <h3>Hanoi, Vietnam</h3>
+          <p>
+            Home sweet home! I spent the first 15 years of my life in this
+            lovely city. This is where my personality and principles are
+            rooted. I’d enjoy a bowl of beef pho, an iced coffee, or a glass of
+            beer anytime whenever I’m back.
+          </p>
+        </article>
+        <article>
+          <div
+            class="origin-photo-placeholder"
+            role="img"
+            aria-label="Singapore photo placeholder"
+          >
+            <span>Singapore photo</span>
+          </div>
+          <h3>Singapore</h3>
+          <p>
+            Second home from home! I’m grateful to have lived in this exciting
+            city throughout high school, where I first kindled my passion for
+            the work I’m doing now. To me, nothing beats a sunny afternoon
+            spent on the Marina Barrage!
+          </p>
+        </article>
+      </div>
     </div>
   </section>
-  <section class="strand-panel-section shell me-strand-panel">
-    <StrandPanel items={strands} label="Personal interests" />
-  </section>
+
   <div class="hobby-sections">
     <section id="brewing" class="hobby-detail" aria-labelledby="brewing-heading">
       <div class="shell hobby-layout">
@@ -60,10 +61,21 @@ const strands: [StrandItem, StrandItem, StrandItem] = [
           <p>Coffee is one of the hobbies I spend the most time learning about.</p>
         </header>
         <dl class="hobby-notes">
-          <div><dt>Preferred methods</dt><dd>Add the brewers and recipes you use most often.</dd></div>
-          <div><dt>What interests me</dt><dd>Add a few details, such as origins, processing, roasting, or dialing in espresso.</dd></div>
-          <div><dt>Recently</dt><dd>Add a memorable coffee, café visit, or experiment.</dd></div>
+          <div><dt>Preferred methods</dt><dd>Pour-over and Phin drip</dd></div>
+          <div><dt>Currently</dt><dd>I’m experimenting with different types of fruity Americano. Give lime a try.</dd></div>
+          <div><dt>Fun fact</dt><dd>It took me 32 espresso shots to get my first latte art.</dd></div>
         </dl>
+        <div class="hobby-gallery" aria-label="Brewing photo gallery">
+          <div class="hobby-photo-placeholder hobby-photo-placeholder--feature" role="img" aria-label="Featured brewing photo placeholder">
+            <span>Brewing photo 01</span>
+          </div>
+          <div class="hobby-photo-placeholder" role="img" aria-label="Brewing photo placeholder">
+            <span>Brewing photo 02</span>
+          </div>
+          <div class="hobby-photo-placeholder" role="img" aria-label="Brewing photo placeholder">
+            <span>Brewing photo 03</span>
+          </div>
+        </div>
       </div>
     </section>
     <section id="jamming" class="hobby-detail" aria-labelledby="jamming-heading">
@@ -73,10 +85,21 @@ const strands: [StrandItem, StrandItem, StrandItem] = [
           <p>Guitar gives me a different way to slow down and pay attention.</p>
         </header>
         <dl class="hobby-notes">
-          <div><dt>Instrument</dt><dd>Add the guitar or other instruments you play.</dd></div>
-          <div><dt>Influences</dt><dd>Add a few genres, artists, or songs you return to.</dd></div>
-          <div><dt>Currently practicing</dt><dd>Add a technique, song, or musical goal.</dd></div>
+          <div><dt>Instrument</dt><dd>Acoustic guitar</dd></div>
+          <div><dt>Influences</dt><dd>Vietnamese indie (shout out to Keo Con!) and, recently, blues-pop artists like Eric Clapton.</dd></div>
+          <div><dt>Currently practicing</dt><dd>Blues scale</dd></div>
         </dl>
+        <div class="hobby-gallery" aria-label="Jamming photo gallery">
+          <div class="hobby-photo-placeholder hobby-photo-placeholder--feature" role="img" aria-label="Featured jamming photo placeholder">
+            <span>Jamming photo 01</span>
+          </div>
+          <div class="hobby-photo-placeholder" role="img" aria-label="Jamming photo placeholder">
+            <span>Jamming photo 02</span>
+          </div>
+          <div class="hobby-photo-placeholder" role="img" aria-label="Jamming photo placeholder">
+            <span>Jamming photo 03</span>
+          </div>
+        </div>
       </div>
     </section>
     <section id="lifting" class="hobby-detail" aria-labelledby="lifting-heading">
@@ -86,9 +109,9 @@ const strands: [StrandItem, StrandItem, StrandItem] = [
           <p>Training is a reliable part of my week and a simple way to measure progress.</p>
         </header>
         <dl class="hobby-notes">
-          <div><dt>Approach</dt><dd>Add how you structure training or what you value in it.</dd></div>
-          <div><dt>Favorite movements</dt><dd>Add the lifts or exercises you enjoy most.</dd></div>
-          <div><dt>Current focus</dt><dd>Add a goal, program, or area you are working on.</dd></div>
+          <div><dt>Split</dt><dd>Push–pull–legs</dd></div>
+          <div><dt>Favorite movements</dt><dd>Nothing beats a dip with good form.</dd></div>
+          <div><dt>Bench PR</dt><dd>205 lbs (yes, I’m almost there).</dd></div>
         </dl>
       </div>
     </section>

@@ -1,9 +1,11 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Timeline from "../components/Timeline.astro";
 import { siteConfig } from "../config/site";
 import { sortTimeline } from "../utils/timeline";
+import indexPhoto from "../assets/index_photo.jpeg";
 
 const featured = sortTimeline(
   (await getCollection("timeline")).filter((entry) => entry.data.featured),
@@ -16,14 +18,19 @@ const asset = (path: string) => `${baseURL}${path.replace(/^\//, "")}`;
 
 <BaseLayout>
   <section class="home-intro shell">
-    <div class="home-portrait reveal" role="img" aria-label="Portrait placeholder">
-      <span>{siteConfig.shortName}</span>
-      <p>Replace this with<br />a photo of yourself.</p>
+    <div class="home-portrait reveal">
+      <Image
+        src={indexPhoto}
+        alt={`Portrait of ${siteConfig.name}`}
+        widths={[560, 800]}
+        sizes="(max-width: 800px) min(100vw - 32px, 430px), 34vw"
+        loading="eager"
+      />
     </div>
     <div class="home-welcome reveal reveal-delay-1">
-      <h1>Hey, thanks for dropping by!</h1>
+      <h1>Xin chào,<br />I'm Kien!</h1>
       <p class="welcome-copy">
-        My name is {siteConfig.name}. {siteConfig.intro}
+        {siteConfig.intro}
       </p>
       <div class="button-row">
         <a class="button button--primary" href={asset("/me/")}>More about me</a>
@@ -36,16 +43,38 @@ const asset = (path: string) => `${baseURL}${path.replace(/^\//, "")}`;
     <div class="shell">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Right now</p>
-          <h2>What I’m interested in</h2>
+          <h2>On my mind right now</h2>
+          <p class="now-description">
+            Originally coming from an academic background, I’m actively
+            working on my engineering gaps to bring models into services,
+            while continuing to enjoy research.
+          </p>
         </div>
-        <p class="now-note">A short, occasionally updated list.</p>
       </div>
       <dl class="now-grid">
         {siteConfig.now.map((item, index) => (
           <div>
             <dt><span>0{index + 1}</span>{item.label}</dt>
-            <dd>{item.value}</dd>
+            <dd>
+              <p>{item.value}</p>
+              {item.projects && (
+                <ul>
+                  {item.projects.map((project) => <li>{project}</li>)}
+                </ul>
+              )}
+              {item.label === "Research" && (
+                <p class="now-mentorship">
+                  I’m grateful to receive mentorship from Arran Wang and
+                  Professor Danielle Szafir at VisuaLab on these projects.
+                </p>
+              )}
+              {item.link && (
+                <a href={item.link.href} target="_blank" rel="noreferrer">
+                  {item.link.label} <span aria-hidden="true">↗</span>
+                  <span class="sr-only"> (opens in a new tab)</span>
+                </a>
+              )}
+            </dd>
           </div>
         ))}
       </dl>
@@ -55,7 +84,6 @@ const asset = (path: string) => `${baseURL}${path.replace(/^\//, "")}`;
   <section class="section shell" aria-labelledby="selected-work">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">A few highlights</p>
         <h2 id="selected-work">Selected work</h2>
       </div>
       <a class="text-link" href={asset("/work/")}>View all work →</a>

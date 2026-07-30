@@ -24,6 +24,19 @@ Run `npm run check` for content and TypeScript validation and `npm run build` fo
 
 Timeline types are `work`, `project`, `research`, and `education`. Omit `endDate` for a current entry. Add `featured: true` to make an entry eligible for the home page.
 
+### Optional timeline photos
+
+Store experience photos under `src/assets/`, then add `image` and `imageAlt`
+to that timeline entry's frontmatter:
+
+```yaml
+image: "../../assets/my-project-photo.jpg"
+imageAlt: "Presenting the project at demo day"
+```
+
+Entries with an image use a text-and-photo layout automatically. Entries
+without these fields keep the existing text-only layout.
+
 ## Add a résumé
 
 Place the PDF at `public/resume.pdf`, then change `resume.available` to `true` in `src/config/site.ts`. Until both steps are complete, the Work page intentionally shows a disabled “Résumé coming soon” control.

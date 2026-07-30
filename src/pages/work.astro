@@ -17,7 +17,7 @@ const strands: [StrandItem, StrandItem, StrandItem] = [
   {
     id: "professional",
     title: "Professional",
-    description: "Internships and jobs",
+    description: "Internships & jobs",
   },
   {
     id: "research",
@@ -27,7 +27,7 @@ const strands: [StrandItem, StrandItem, StrandItem] = [
   {
     id: "projects",
     title: "Projects",
-    description: "Hackathons and personal projects",
+    description: "Hackathons & Independent projects",
   },
 ];
 const baseURL = import.meta.env.BASE_URL.endsWith("/")
@@ -57,7 +57,7 @@ const resumeHref = `${baseURL}${siteConfig.resume.href.replace(/^\//, "")}`;
       )}
     </div>
   </section>
-  <section class="strand-panel-section shell">
+  <section class="strand-panel-section work-strand-panel shell">
     <StrandPanel items={strands} label="Work strands" />
   </section>
   <div class="strand-sections">

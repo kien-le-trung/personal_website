@@ -6,18 +6,23 @@ export type SocialLink = {
 export type NowItem = {
   label: string;
   value: string;
+  projects?: string[];
+  link?: {
+    label: string;
+    href: string;
+  };
 };
 
 export const siteConfig = {
-  name: "Your Name",
-  shortName: "YN",
-  title: "Your Name — Personal website",
+  name: "Kien Le",
+  shortName: "Kien",
+  title: "Kien Le",
   description:
     "My personal website, where I share what I am working on and a little about myself.",
-  email: "hello@example.com",
-  location: "Your city",
+  email: "kientrle@unc.edu",
+  location: "Chapel Hill & Durham, NC",
   intro:
-    "This is a small corner of the internet where I keep track of my work, current interests, and the things I enjoy outside of them.",
+    "Thanks for dropping by! Welcome to this small Internet corner where I keep track my work, interests and hobbies.",
   availability: "I am always open to learning and new opportunities.",
   navigation: [
     { label: "Home", href: "/" },
@@ -26,17 +31,31 @@ export const siteConfig = {
     { label: "Contact", href: "/contact/" },
   ],
   socials: [
-    { label: "GitHub", href: "https://github.com/your-handle" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/your-handle" },
+    { label: "GitHub", href: "https://github.com/kien-le-trung" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/kien-le-trung/" },
   ] satisfies SocialLink[],
   resume: {
     available: false,
     href: "/resume.pdf",
   },
   now: [
-    { label: "Making", value: "A new home for my work and ideas." },
-    { label: "Learning", value: "Something just beyond my current reach." },
-    { label: "Reading", value: "A book worth talking about." },
-    { label: "Based", value: "Your city, for now." },
+    {
+      label: "Research",
+      value:
+        "Research makes up a huge part of my work. I’m currently working on two projects at Visualab, UNC Chapel Hill:",
+      projects: [
+        "Designing LLM systems that produce audience-aware and rhetorically meaningful visualizations.",
+        "Building an AR platform for Parkinson’s disease rehabilitation, with both patient-facing and clinician-facing features.",
+      ],
+    },
+    {
+      label: "Engineering",
+      value:
+        "I’m also building llmposter to work on my engineering gaps. llmposter is a platform where users can play the social deduction game Imposter with four other LLMs. I’m learning to deploy ML models, track experiments, and design production data pipelines to bridge the gap between research models and deployed services.",
+      link: {
+        label: "Check out llmposter",
+        href: "https://llmposter.vercel.app/",
+      },
+    },
   ] satisfies NowItem[],
 } as const;
