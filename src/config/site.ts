@@ -33,7 +33,7 @@ export const siteConfig = {
   ],
   socials: [
     { label: "GitHub", href: "https://github.com/kien-le-trung" },
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/kien-le-trung/" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/kien-ltok/" },
   ] satisfies SocialLink[],
   resume: {
     available: false,
