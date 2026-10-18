@@ -5,7 +5,7 @@ import PageIntro from "../components/PageIntro.astro";
 import StrandPanel, { type StrandItem } from "../components/StrandPanel.astro";
 import Timeline from "../components/Timeline.astro";
 import { siteConfig } from "../config/site";
-import { sortTimeline, formatDateRange } from "../utils/timeline";
+import { sortTimeline } from "../utils/timeline";
 
 const entries = sortTimeline(await getCollection("timeline"));
 const professional = entries.filter((entry) => entry.data.type === "work");
@@ -101,7 +101,6 @@ const resumeHref = `${baseURL}${siteConfig.resume.href.replace(/^\//, "")}`;
       <div class="education-grid">
         {education.map((entry) => (
           <article>
-            <p>{formatDateRange(entry.data.startDate, entry.data.endDate)}</p>
             <h3>{entry.data.title}</h3>
             <p>{entry.data.organization}</p>
           </article>
