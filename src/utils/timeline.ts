@@ -4,10 +4,8 @@ export type TimelineEntry = CollectionEntry<"timeline">;
 
 export function sortTimeline(entries: TimelineEntry[]) {
   return [...entries].sort((a, b) => {
-    const aCurrent = a.data.endDate ? 0 : 1;
-    const bCurrent = b.data.endDate ? 0 : 1;
-    if (aCurrent !== bCurrent) return bCurrent - aCurrent;
-    return b.data.startDate.getTime() - a.data.startDate.getTime();
+    const dateDifference = b.data.startDate.getTime() - a.data.startDate.getTime();
+    return dateDifference || a.data.title.localeCompare(b.data.title);
   });
 }
 

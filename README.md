@@ -24,6 +24,27 @@ Run `npm run check` for content and TypeScript validation and `npm run build` fo
 
 Timeline types are `work`, `project`, `research`, and `education`. Omit `endDate` for a current entry. Add `featured: true` to make an entry eligible for the home page.
 
+### Add a project
+
+Create a Markdown file with a descriptive name such as `src/content/timeline/project-my-project.md`. Filenames do not control display order: entries are sorted by `startDate`, newest first, with titles breaking ties. You never need to rename or renumber existing projects. Both ongoing and completed projects follow this order.
+
+```yaml
+---
+title: "My project"
+organization: "Independent project"
+type: "project"
+startDate: "2026-10"
+summary: "What I built and what I contributed."
+tags: ["TypeScript"]
+links:
+  - label: "View project"
+    href: "https://example.com/"
+featured: false
+---
+```
+
+Use `YYYY-MM-DD` when projects started in the same month and their order matters. Add `endDate` for a completed project. Set `featured: true` to include it among the three newest featured entries on the home page.
+
 ### Optional timeline photos
 
 Store experience photos under `src/assets/`, then add `image` and `imageAlt`
